@@ -1,0 +1,216 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/vendor';
+@import 'libs/breakpoints';
+@import 'fontawesome-all.min.css';
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300i,400i,600");
+
+/*
+	Ethereal by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+// Breakpoints.
+
+	@include breakpoints((
+		xlarge:   ( 1281px,  1680px ),
+		large:    ( 981px,   1280px ),
+		medium:   ( 737px,   980px  ),
+		small:    ( 481px,   736px  ),
+		xsmall:   ( 361px,   480px  ),
+		xxsmall:  ( null,    360px  ),
+		short:    '(min-aspect-ratio: 16/7)',
+		xshort:   '(min-aspect-ratio: 16/6)'
+	));
+
+// Mixins.
+
+	@mixin gradient-background($tint: false, $opacity: 0.25, $stop1: 25%, $stop2: 50%, $angle: 45deg) {
+		$background-image: (
+			url('../../images/overlay.png'),
+			linear-gradient($angle, transparentize(_palette(accent1), (1 - $opacity)) $stop1, transparentize(_palette(accent2), (1 - $opacity)) $stop2, transparentize(_palette(accent3), (1 - $opacity)))
+		);
+
+		$background-size: (
+			128px 128px,
+			auto
+		);
+
+		@if ($tint) {
+			$x: linear-gradient(0deg, rgba(0,0,0,0.125), rgba(0,0,0,0.125));
+			$y: auto;
+			$background-image: append($background-image, $x);
+			$background-size: append($background-size, $y);
+		}
+
+		background-image: $background-image;
+		background-size: $background-size;
+	}
+
+	@mixin gradient-background-small($tint: false, $opacity: 0.25, $stop1: 25%, $stop2: 50%) {
+		@include gradient-background($tint, $opacity, $stop1, $stop2, 135deg);
+	}
+
+	@mixin spans($x) {
+		@for $i from 0 through 10 {
+
+			@if ($i > 0) {
+				.span-#{$i} {
+					width: ($x * $i);
+				}
+			}
+
+			@if ($i < 10) {
+				.span-#{$i}-25 {
+					width: ($x * $i) + ($x * 0.25);
+				}
+
+				.span-#{$i}-5 {
+					width: ($x * $i) + ($x * 0.5);
+				}
+
+				.span-#{$i}-75 {
+					width: ($x * $i) + ($x * 0.75);
+				}
+			}
+		}
+	}
+
+	@mixin spans-small($x) {
+		@for $i from 0 through 10 {
+
+			@if ($i > 0) {
+				.span-#{$i} {
+					width: 100%;
+				}
+			}
+
+			@if ($i < 10) {
+				.span-#{$i}-25 {
+					width: 100%;
+				}
+
+				.span-#{$i}-5 {
+					width: 100%;
+				}
+
+				.span-#{$i}-75 {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+// Base.
+
+	@import 'base/reset';
+	@import 'base/page';
+	@import 'base/typography';
+
+// Component.
+
+	@import 'components/form';
+	@import 'components/icon';
+	@import 'components/image';
+	@import 'components/list';
+	@import 'components/actions';
+	@import 'components/icons';
+	@import 'components/grid-icons';
+	@import 'components/contact-icons';
+	@import 'components/table';
+	@import 'components/button';
+	@import 'components/gallery';
+	@import 'components/panel';
+	@import 'components/panel-banner';
+	@import 'components/panel-spotlight';
+
+// Layout.
+
+	@import 'layout/page-wrapper';
+	@import 'layout/wrapper';
+
+
+
+
+	// CUSTOM
+
+	@font-face {
+    font-family: 'abegan';
+    src: url('../webfonts/abeganshi-webfont.woff2') format('woff2'),
+         url('../webfonts/abeganshi-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+	}
+
+	.image.filtered:after {
+    background-image: url(../../images/overlay.png), linear-gradient(45deg, rgba(114, 97, 147, 0.25) 25%, rgba(255, 120, 121, 0.05) 50%, rgba(255, 228, 180, 0.15));
+	}
+
+	.burger {
+		position: absolute;
+		right: 5%;
+		top: 5%;
+
+		@include vendor('transition', (
+			'color #{_duration(transition)} ease-in-out'
+		));
+
+
+		i {
+			font-size: 1.75em;
+		}
+
+		&:hover {
+			color: _palette(accent5);
+			cursor: pointer;
+		}
+	}
+
+	#wrapper > .footer {
+		position: absolute;
+		bottom: -3rem;
+		left: 0;
+		font-size: 1rem;
+		color: _palette(accent5);
+		margin-bottom: 0;
+		font-weight: 300;
+
+		span {
+			margin: 0 0.4rem ;
+		}
+	}
+
+	.panel .panel-bg-start {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('../../images/bretterbutze/board2.png');
+		background-repeat: no-repeat;
+		background-size: 11rem;
+		background-position: 100.2% 121%;
+		opacity: 0.9;
+
+	}
+
+	.panel .surfer-bg {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('../../images/bretterbutze/surfer.svg');
+		background-repeat: no-repeat;
+		background-size: 27rem;
+		background-position: 100.2% 110%;
+		opacity: 0.9;
+
+	}
