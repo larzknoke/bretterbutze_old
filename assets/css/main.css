@@ -2407,6 +2407,58 @@ button,
 @media screen and (max-width: 480px) {
   .panel.spotlight .content {
     min-height: 30rem; } }
+/* Important styles */
+.burger {
+  display: block;
+  width: 28px;
+  height: 30px;
+  margin: 15px auto 0px; }
+
+.burger span:after,
+.burger span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -9px; }
+
+.burger span:after {
+  top: 9px; }
+
+.burger span {
+  position: relative;
+  display: block; }
+
+.burger span,
+.burger span:after,
+.burger span:before {
+  width: 100%;
+  height: 4px;
+  background-color: white;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  backface-visibility: hidden;
+  border-radius: 2px; }
+
+.burger:hover span,
+.burger:hover span:after,
+.burger:hover span:before {
+  background-color: #355765; }
+
+/* on activation */
+.burger.on span {
+  background-color: transparent;
+  color: #355765; }
+
+.burger.on span:before {
+  transform: rotate(45deg) translate(5px, 5px);
+  background-color: #e37b7c; }
+
+.burger.on span:after {
+  transform: rotate(-45deg) translate(7px, -8px);
+  background-color: #e37b7c; }
+
 /* Page Wrapper */
 #page-wrapper {
   display: -moz-flex;
@@ -2567,8 +2619,6 @@ button,
   -webkit-transition: color 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out; }
-  .burger i {
-    font-size: 1.75em; }
   .burger:hover {
     color: #355765;
     cursor: pointer; }
@@ -2611,5 +2661,39 @@ button,
   background-size: 27rem;
   background-position: 100.2% 110%;
   opacity: 0.9; }
+
+.start-content {
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); }
+
+.start-content.burger-open {
+  transform: translate(-25rem, 0); }
+
+.menu {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  color: white;
+  width: 25rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  padding: 1rem 0; }
+  .menu a {
+    transition: all 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.875);
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    padding: 0.5rem 2rem;
+    border-bottom: 0; }
+    .menu a:hover {
+      background-color: #e37b7c;
+      cursor: pointer; }
 
 /*# sourceMappingURL=main.css.map */

@@ -756,4 +756,18 @@
 
 					});
 
+
+
+	//Burger
+	$('.burger')
+		.on('click', function(event) {
+			$('.start-content').toggleClass('burger-open');
+			$(this).toggleClass('on');
+		});
+	$('.menu a')
+		.on('click', function(event) {
+			$('.start-content').removeClass('burger-open');
+			$('.burger').removeClass('on');
+		});
+
 })(jQuery);
