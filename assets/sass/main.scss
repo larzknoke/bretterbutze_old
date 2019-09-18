@@ -122,6 +122,7 @@
 	@import 'components/table';
 	@import 'components/button';
 	@import 'components/gallery';
+	@import 'components/modal';
 	@import 'components/panel';
 	@import 'components/panel-banner';
 	@import 'components/panel-spotlight';
@@ -176,6 +177,12 @@
 
 		span {
 			margin: 0 0.4rem ;
+			font-size: 1rem;
+		}
+
+		.modal .inner {
+			color: white;
+			height: 60vh;
 		}
 	}
 
@@ -210,9 +217,28 @@
 		opacity: 0.9;
 	}
 
+	@include breakpoint('<=small') {
+
+		#wrapper {
+			margin-bottom: 0;
+		}
+
+		.panel .surfer-bg {
+			opacity: .2;
+		}
+		.panel .panel-bg-start {
+			opacity: .5;
+			background-size: 7rem;
+			background-position: 100.2% 110%;
+		}
+	}
+
 
 	.start-content{
 		transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+		-webkit-box-shadow: 9px 2px 20px -6px rgba(0,0,0,0.59);
+		-moz-box-shadow: 9px 2px 20px -6px rgba(0,0,0,0.59);
+		box-shadow: 9px 2px 20px -6px rgba(0,0,0,0.59);
 	}
 	.start-content.burger-open {
 		transform: translate(-25rem,0);
@@ -250,4 +276,74 @@
 			}
 
 		}
+	}
+
+	.cookie-notice {
+		position: fixed;
+		@include gradient-background;
+		background-color: _palette(accent6);
+		width: 50vw;
+		// height: 5rem;
+		padding: 1rem;
+		bottom: 0;
+		right: 5%;
+		-webkit-box-shadow: 9px 2px 20px -6px rgba(0,0,0,0.59);
+		-moz-box-shadow: 9px 2px 20px -6px rgba(0,0,0,0.59);
+		box-shadow: 9px 2px 20px -6px rgba(0,0,0,0.59);
+	}
+
+	@include breakpoint('<=small') {
+
+		section.start-section.panel.banner {
+
+			.image {
+				height: 30rem;
+
+				img {
+					-moz-object-position: 25% 45%;
+					-webkit-object-position: 25% 45%;
+					-ms-object-position: 25% 45%;
+					object-position: 25% 45%;
+				}
+			}
+
+			h1 {
+				padding-right: 3rem;
+			}
+
+			.burger {
+				right: 10%;
+			}
+
+			.start-content.burger-open {
+				transform: translate(-75%,0);
+			}
+
+			.menu {
+				width: 75%;
+				height: inherit;
+				bottom: 0;
+				a {
+					padding: 0.75rem 2rem;
+				}
+			}
+
+		}
+
+
+
+		.footer {
+			@include gradient-background;
+			background-color: _palette(accent3);
+			padding: 1rem;
+			span {
+				display: inline-block;
+			}
+		}
+
+		#kontakt {
+			padding-bottom: 2rem;
+		}
+
+
 	}

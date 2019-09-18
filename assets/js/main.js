@@ -6,6 +6,15 @@
 
 (function($) {
 
+	$('.agree').click(function(event){
+		event.preventDefault();
+		event.stopPropagation();
+		$('.cookie-notice').slideToggle(300,function(){$(this).remove()});
+		Cookies.set('cookieAccept', true, { expires: 7 });
+	});
+
+
+
 	// Settings.
 		var settings = {
 
@@ -88,6 +97,9 @@
 		$window.on('load', function() {
 			window.setTimeout(function() {
 				$body.removeClass('is-preload');
+				if (!(Cookies.get('cookieAccept'))) {
+					$('.cookie-notice').fadeIn();
+				}
 			}, 100);
 		});
 
@@ -768,6 +780,114 @@
 		.on('click', function(event) {
 			$('.start-content').removeClass('burger-open');
 			$('.burger').removeClass('on');
+		});
+
+
+	//Impressum
+	$(document)
+		.on('click', '.impressum-trigger', function(event) {
+				$modal = $('.modal.impressum')
+
+			// Prevent default.
+				event.preventDefault();
+				event.stopPropagation();
+
+			// Set visible.
+				$modal.addClass('visible');
+				$modal.addClass('loaded');
+
+			// Focus.
+				$modal.focus();
+		})
+		.on('click', '.datenschutz-trigger', function(event) {
+				$modal = $('.modal.datenschutz')
+
+			// Prevent default.
+				event.preventDefault();
+				event.stopPropagation();
+
+			// Set visible.
+				$modal.addClass('visible');
+				$modal.addClass('loaded');
+
+			// Focus.
+				$modal.focus();
+		})
+		.on('click', '.modal', function(event) {
+			var $modal = $(this)
+
+			// Already hidden? Bail.
+				if (!$modal.hasClass('visible'))
+					return;
+
+			// Stop propagation.
+				event.stopPropagation();
+
+
+			// Clear visible, loaded.
+				$modal
+					.removeClass('loaded')
+
+			// Delay.
+				setTimeout(function() {
+
+					$modal
+						.removeClass('visible')
+
+					// Pause scroll zone.
+						$wrapper.triggerHandler('---pauseScrollZone');
+
+					setTimeout(function() {
+
+						// Focus.
+							$body.focus();
+
+					}, 475);
+
+				}, 125);
+
+		})
+		.on('keypress', '.modal', function(event) {
+
+			var $modal = $(this);
+
+			// Escape? Hide modal.
+				if (event.keyCode == 27)
+					$modal.trigger('click');
+
+		})
+		.on('mouseup mousedown mousemove', '.modal', function(event) {
+
+			// Stop propagation.
+				event.stopPropagation();
+
+		});
+
+
+		$("#contact-form").submit(function(e) {
+
+				e.preventDefault(); // avoid to execute the actual submit of the form.
+
+				$(".msg-box").empty();
+				var form = $(this);
+				var url = form.attr('action');
+
+				if(grecaptcha.getResponse() == "") {
+					console.log("reCaptcha FAILED!");
+					console.log(grecaptcha.getResponse())
+					$(".msg-box").append('<h4>Bitte Captcha bestätigen!</h4>');
+				} else {
+					$.ajax({
+						 type: "POST",
+						 url: url,
+						 data: form.serialize(),
+						 success: function(data)
+						 {
+							 $(".msg-box").append('<h4>Nachricht versendet!</h4>');
+							 form[0].reset();
+						 }
+					});
+				}
 		});
 
 })(jQuery);

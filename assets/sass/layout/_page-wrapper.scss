@@ -16,6 +16,7 @@
 		padding: 5rem;
 		background-image: url('../../images/bg_wood.jpg');
 		background-size: contain;
+		padding-right: 25rem;
 
 
 		@include orientation(portrait) {

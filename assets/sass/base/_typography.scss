@@ -55,10 +55,15 @@
 
 	p {
 		margin: 0 0 _size(element-margin) 0;
+		font-size: 1.07rem;
 
 		body.is-ie & {
 			width: 100%;
 		}
+	}
+
+	span {
+		font-size: 1.07rem;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -120,7 +125,7 @@
 		font-size: 1.325rem;
 
 		&.major {
-			margin: 0 0 (_size(element-margin) * 1.25) 0;
+			margin: 0 0 (_size(element-margin) * 1.0) 0;
 
 			&:after {
 				bottom: -0.75rem;
